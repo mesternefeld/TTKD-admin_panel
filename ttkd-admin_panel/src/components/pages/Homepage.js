@@ -7,13 +7,20 @@ class Homepage extends React.Component {
 		super(props);
 
 		this.state = {
-			fetching: true,
-			events: {}
-		}
+            isSignedIn: false,
+        }
 	}
     render(){
         return(
             <div>
+                <div className="App">
+                    <header className="App-header">
+                    <img src={logo} className="App-logo" alt="logo" />
+                
+                    <p>You are not signed in. Click here to sign in.</p>
+                    <button id="loginButton">Login with Google</button>
+                    </header>
+                </div>
                 <Form>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
