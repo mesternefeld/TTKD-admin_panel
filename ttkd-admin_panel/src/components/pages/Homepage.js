@@ -20,7 +20,7 @@ class Homepage extends React.Component {
         
         window.gapi.load('auth2', () => {
           this.auth2 = gapi.auth2.init({
-            client_id: 'YOUR_CLIENT_ID.apps.googleusercontent.com',
+            client_id: '402862016858-3316mp00ucrloj1fih46qmf1dgf6cdh8.apps.googleusercontent.com',
           })
     
           // this.auth2.attachClickHandler(document.querySelector('#loginButton'), {}, this.onLoginSuccessful.bind(this))
@@ -34,12 +34,10 @@ class Homepage extends React.Component {
         });    
     
         window.gapi.load('signin2', function() {
-          // Method 3: render a sign in button
-          // using this method will show Signed In if the user is already signed in
           var opts = {
             width: 200,
             height: 50,
-            client_id: 'YOUR_CLIENT_ID.apps.googleusercontent.com',
+            client_id: '402862016858-3316mp00ucrloj1fih46qmf1dgf6cdh8.apps.googleusercontent.com',
             onsuccess: successCallback
           }
           gapi.signin2.render('loginButton', opts)
@@ -79,11 +77,9 @@ class Homepage extends React.Component {
         return(
             <div>
                <div className="App">
-                <header className="App-header">
                     <h2>Sample App.</h2>
 
                     {this.getContent()}           
-                </header>
                 </div>
             </div>
             );
