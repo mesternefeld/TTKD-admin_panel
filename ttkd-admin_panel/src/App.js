@@ -27,7 +27,10 @@ function App() {
     );
   }else{
     return (
-      <Login />
+      <div className="App">
+        <Header/>
+        <Login />
+      </div>
     );
   }
 }
