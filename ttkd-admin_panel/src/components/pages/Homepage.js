@@ -88,17 +88,18 @@ class Homepage extends React.Component {
 
    responseGoogle(response){
     console.log(response.profileObj);
-    this.setState({
-      isSignedIn: true
-    })
+    
     if(response.profileObj && response.profileObj.email !== undefined){
-			sessionStorage.setItem("email", response.profileObj.email);
-		}
+        this.setState({
+            isSignedIn: true
+          });
+		sessionStorage.setItem("email", response.profileObj.email);
+    }
    }
   
   render(){
     const successCallback = this.responseGoogle.bind(this);
-    if (this.state.isSignedIn) {
+    if (sessionStorage.getItem("email") !== null) {
       return <p>hello user, you're signed in </p>
     } else {
       return(

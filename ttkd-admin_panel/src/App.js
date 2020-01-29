@@ -7,22 +7,29 @@ import {
   Homepage,
   List
 } from "./components/pages";
+import { checkLogin, Login } from "./components/utilities/Login.js";
 
 function App() {
-  return (
-    <div className="App">
-      <Header/>
-      <BrowserRouter>
-        <div class="container">
-              <Switch>
-                <Route exact path="/" component={Homepage}/>
-                <Route exact path="" component={Homepage}/>
-                <Route exact path="/List" component={List}/>
-              </Switch>
-        </div>
-      </BrowserRouter>
-    </div>
-  );
+  if(checkLogin()) {
+    return (
+      <div className="App">
+        <Header/>
+        <BrowserRouter>
+          <div class="container">
+                <Switch>
+                  <Route exact path="/" component={Homepage}/>
+                  <Route exact path="" component={Homepage}/>
+                  <Route exact path="/List" component={List}/>
+                </Switch>
+          </div>
+        </BrowserRouter>
+      </div>
+    );
+  }else{
+    return (
+      <Login />
+    );
+  }
 }
 
 export default App;

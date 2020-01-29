@@ -1,5 +1,5 @@
 import React from "react"
-import { GoogleLogin } from 'react-google-login-component';
+import { GoogleLogin } from 'react-google-login';
 
 export const checkLogin = () => {
 	if(sessionStorage.getItem("email") !== null){
