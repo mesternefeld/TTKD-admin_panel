@@ -2,8 +2,8 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from './btn_google_signin_light_normal_web@2x.png'
 import { Button, Form } from 'react-bootstrap';
+import { GoogleLogin } from 'react-google-login';
 
-/* global gapi */
 
 class Homepage extends React.Component {
     constructor(props){
@@ -14,7 +14,7 @@ class Homepage extends React.Component {
         }
     }
 
-    componentDidMount() {
+/*    componentDidMount() {
 
         const successCallback = this.onSuccess.bind(this);
         
@@ -84,6 +84,38 @@ class Homepage extends React.Component {
             </div>
             );
     }
+    */
+
+   responseGoogle(response){
+    console.log(response.profileObj);
+    this.setState({
+      isSignedIn: true
+    })
+    if(response.profileObj && response.profileObj.email !== undefined){
+			sessionStorage.setItem("email", response.profileObj.email);
+		}
+   }
+  
+  render(){
+    const successCallback = this.responseGoogle.bind(this);
+    if (this.state.isSignedIn) {
+      return <p>hello user, you're signed in </p>
+    } else {
+      return(
+        <div>
+          <GoogleLogin
+            clientId="402862016858-3316mp00ucrloj1fih46qmf1dgf6cdh8.apps.googleusercontent.com"
+            buttonText="Login"
+            onSuccess={successCallback}
+            onFailure={successCallback}
+            cookiePolicy={'single_host_origin'}
+          > 
+        <span> Login with Google</span>
+        </GoogleLogin>
+        </div>
+      );
+    }
+  }
 }
 
 export default Homepage;
