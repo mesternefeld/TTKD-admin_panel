@@ -5,7 +5,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Switch, Route, BrowserRouter} from "react-router-dom";
 import {
   Homepage,
-  List
+  List,
+  Dashboard,
+  FileStructure,
+  Audio, 
+  Steps, 
+  Video
 } from "./components/pages";
 
 function App() {
@@ -13,10 +18,15 @@ function App() {
     <div className="App">
       <Header/>
       <BrowserRouter>
-        <div class="container">
+        <div className="container">
               <Switch>
                 <Route exact path="/" component={Homepage}/>
                 <Route exact path="/List" component={List}/>
+                <Route exact path= "/Dashboard" component={Dashboard}/>
+                <Route exact path="/FileStructure" component={FileStructure}/>
+                <Route exact path="/Audio" component={Audio}/>
+                <Route exact path="/Steps" component={Steps}/>
+                <Route exact path="/Video" component={Video}/>
               </Switch>
         </div>
       </BrowserRouter>
