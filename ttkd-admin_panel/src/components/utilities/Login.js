@@ -27,15 +27,13 @@ export class Login extends React.Component{
 				isSignedIn: true
 			  });
 			sessionStorage.setItem("email", response.profileObj.email);
-			window.location = "/";
 		}
-
+		window.location = "/";
 	}
 
 	render() {
 		const successCallback = this.responseGoogle.bind(this);
-		if (sessionStorage.getItem("email") !== null) {
-			window.location = "/";
+		if (checkLogin()) {
 			return (
 				<div></div>
 			);
