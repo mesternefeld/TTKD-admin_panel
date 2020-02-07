@@ -2,7 +2,9 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AwesomeButton from 'react-awesome-button';
 import AwesomeButtonStyles from "react-awesome-button/src/styles/styles.scss";
-import { Button, ButtonGroup } from 'react-bootstrap';
+import {ButtonGroup } from 'react-bootstrap';
+import {Button} from "@progress/kendo-react-buttons";
+
 
 class Dashboard extends React.Component {
     constructor(props){
