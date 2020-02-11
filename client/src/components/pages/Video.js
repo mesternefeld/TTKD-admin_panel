@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {ButtonGroup, Form, Card, ListGroup } from 'react-bootstrap';
+import {ButtonGroup} from 'react-bootstrap';
 import 'react-dropdown/style.css'
 import { Upload } from '@progress/kendo-react-upload';
 import "@progress/kendo-theme-bootstrap/dist/all.css";
@@ -10,16 +10,33 @@ import {Button} from "@progress/kendo-react-buttons";
 
 
 class Video extends React.Component {
-  categories = [ "Stances", "Blocks", "One-Steps", "Forms"];
-
     constructor(props){
-		super(props);
+		  super(props);
 
-		this.state = {
-      fetching: true,
-      selectedOption: null,
-			events: {}
-		  }
+      this.state = {
+        fetching: true,
+        selectedOption: null,
+        events: {},
+        categories:[]
+        }
+      
+      // Allows these functions access to this (so they can access this.state)
+      this.handleChange = this.handleChange.bind(this);
+      this.getCategories = this.getCategories.bind(this);
+    }
+
+     // Fetch the list on first mount
+    componentDidMount() {
+      this.getCategories();
+    }
+
+    // Retrieves the list of items from the Express app
+    getCategories = () => {
+      console.log("Calling getCategories api endpoint ");
+      fetch('/getCategories')
+      .then(res => res.json())
+      .then(categories => this.setState({ categories },
+        () => console.log(`[INFO][CLIENT][API: /getCategories]:`, this.state.categories)))
     }
     
     handleChange = selectedOption => {
@@ -33,7 +50,7 @@ class Video extends React.Component {
         return(
             <div className="add-video-content">
                 <p>Add Video Page!</p>
-                 <DropDownList data={this.categories} defaultValue="Select a Category" />
+                 <DropDownList data={this.state.categories} defaultValue="Select a Category"  className="blah"/>
                  <Upload
                   batch={false}
                   multiple={true}
@@ -42,10 +59,10 @@ class Video extends React.Component {
                   saveUrl={'https://demos.telerik.com/kendo-ui/service-v4/upload/save'}
                   removeUrl={'https://demos.telerik.com/kendo-ui/service-v4/upload/remove'}
                 />
-                <ButtonGroup horizontal>
-                <Button type="primary"> Cancel </Button>
-                <Button type="primary"> Add Video </Button>
-                <Button type="primary"> Add Audio</Button>
+                <ButtonGroup horizontal= "true">
+                  <Button type="primary"> Cancel </Button>
+                  <Button type="primary"> Add Video </Button>
+                  <Button type="primary"> Add Audio</Button>
                 </ButtonGroup>
             </div>
         );

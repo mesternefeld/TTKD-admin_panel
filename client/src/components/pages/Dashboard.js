@@ -1,7 +1,5 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import AwesomeButton from 'react-awesome-button';
-import AwesomeButtonStyles from "react-awesome-button/src/styles/styles.scss";
 import {ButtonGroup } from 'react-bootstrap';
 import {Button} from "@progress/kendo-react-buttons";
 
@@ -14,13 +12,14 @@ class Dashboard extends React.Component {
 			fetching: true,
 			events: {}
 		}
-	}
+    }
+
     render(){
         return(
             <div>
                 <p>Options!</p>
                 <ButtonGroup vertical>
-                <Button type="primary"> File Structure </Button>
+                <Button type="primary" > File Structure </Button>
                 <Button type="primary"> Add Video </Button>
                 <Button type="primary"> Add Audio</Button>
                 </ButtonGroup>

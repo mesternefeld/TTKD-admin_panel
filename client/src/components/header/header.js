@@ -2,15 +2,15 @@
 import React from "react";
 //import {Glyphicon} from "react-bootstrap";
 import { Button, Navbar, Nav, NavDropdown, Form, FormControl } from 'react-bootstrap';
-import {
-    Homepage,
-    List,
-    Dashboard,
-    FileStructure,
-    Audio, 
-    Steps, 
-    Video
-  } from "./../pages";
+// import {
+//     Homepage,
+//     List,
+//     Dashboard,
+//     FileStructure,
+//     Audio, 
+//     Steps, 
+//     Video
+//   } from "./../pages";
 
 class Header extends React.Component {
     render() {
