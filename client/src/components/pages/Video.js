@@ -30,7 +30,7 @@ class Video extends React.Component {
       this.getCategories();
     }
 
-    // Retrieves the list of items from the Express app
+    // Retrieves the list of categories from the Express app
     getCategories = () => {
       console.log("Calling getCategories api endpoint ");
       fetch('/getCategories')

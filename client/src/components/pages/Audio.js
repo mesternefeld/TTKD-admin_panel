@@ -10,7 +10,6 @@ import {Button} from "@progress/kendo-react-buttons";
 import { Upload } from '@progress/kendo-react-upload';
 
 class Audio extends React.Component {
-    //videos = ["Video1", "Video2", "Video3", "Video4", "Video5", "Video6"];
     constructor(props){
 		super(props);
 
@@ -35,7 +34,7 @@ class Audio extends React.Component {
         this.getVideos();
       }
 
-    // Retrieves the list of items from the Express app
+    // Retrieves the categories of items from the Express app
     getCategories = () => {
         console.log("Calling getCategories api endpoint ");
         fetch('/getCategories')
@@ -44,7 +43,7 @@ class Audio extends React.Component {
             () => console.log(`[INFO][CLIENT][API: /getCategories]:`, this.state.categories)))
     }
 
-     // Retrieves the list of items from the Express app
+     // Retrieves the list of videos from the Express app
      getVideos = () => {
         console.log("Calling getVideos api endpoint ");
         fetch('/getVideos')

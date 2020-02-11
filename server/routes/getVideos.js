@@ -3,7 +3,7 @@ const axios = require('axios');
 const {URLSearchParams} = require('url');
 var router = express.Router();
 
-// An api endpoint that returns a short list of items
+// An api endpoint that returns a short list of videos
 router.get('/', (req,res) => {
     videos = ["Video1", "Video2", "Video3", "Video4", "Video5", "Video6"];
     res.json(videos);
