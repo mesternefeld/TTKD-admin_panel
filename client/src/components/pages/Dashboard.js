@@ -19,9 +19,9 @@ class Dashboard extends React.Component {
             <div>
                 <p>Options!</p>
                 <ButtonGroup vertical>
-                <Button type="primary" > File Structure </Button>
-                <Button type="primary"> Add Video </Button>
-                <Button type="primary"> Add Audio</Button>
+                <Button type="primary" onClick={event =>  window.location.href='./FileStructure'}> File Structure </Button>
+                <Button type="primary" onClick={event =>  window.location.href='./Video'}> Add Video </Button>
+                <Button type="primary"onClick={event =>  window.location.href='./Audio'}> Add Audio</Button>
                 </ButtonGroup>
             </div>
         );

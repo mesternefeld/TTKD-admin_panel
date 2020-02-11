@@ -80,7 +80,7 @@ class Audio extends React.Component {
                 </div>
                 <div>
                     <ButtonGroup horizontal= "true">
-                    <Button type="primary"> Cancel </Button>
+                    <Button type="primary" onClick={event =>  window.location.href='./Dashboard'}> Cancel </Button>
                     <Button type="primary"> Pair Content </Button>
                     </ButtonGroup>
                 </div>

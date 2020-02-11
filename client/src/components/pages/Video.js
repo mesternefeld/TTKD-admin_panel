@@ -38,6 +38,15 @@ class Video extends React.Component {
       .then(categories => this.setState({ categories },
         () => console.log(`[INFO][CLIENT][API: /getCategories]:`, this.state.categories)))
     }
+
+    // Posts the video to the Express app
+    addVideo = () => {
+      console.log("Calling addVideo api endpoint ");
+      fetch('/addVideo')
+      .then(res => res.json())
+      .then(categories => this.setState({ categories },
+        () => console.log(`[INFO][CLIENT][API: /addVideo]:`, this.state.categories)))
+    }
     
     handleChange = selectedOption => {
       this.setState(
@@ -60,7 +69,7 @@ class Video extends React.Component {
                   removeUrl={'https://demos.telerik.com/kendo-ui/service-v4/upload/remove'}
                 />
                 <ButtonGroup horizontal= "true">
-                  <Button type="primary"> Cancel </Button>
+                  <Button type="primary"onClick={event =>  window.location.href='./Dashboard'}> Cancel </Button>
                   <Button type="primary"> Add Video </Button>
                   <Button type="primary"> Add Audio</Button>
                 </ButtonGroup>

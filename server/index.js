@@ -5,6 +5,8 @@ var path = require('path');
 
 var getCategories = require('./routes/getCategories');
 var getVideos = require('./routes/getVideos');
+var addVideo = require('./routes/addVideo');
+var addAudio = require('./routes/addAudio');
 
 var app = express();
 
@@ -18,6 +20,8 @@ app.use(express.static(path.join(__dirname, 'build')));
 
 app.use("/getCategories?", getCategories);
 app.use("/getVideos?", getVideos);
+app.use("/addVideo?", addVideo);
+app.use("/addAudio?", addAudio);
 
 
 // An api endpoint that returns a short list of items
