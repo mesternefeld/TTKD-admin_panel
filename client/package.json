@@ -6,6 +6,7 @@
     "@progress/kendo-react-buttons": "^3.10.1",
     "@progress/kendo-react-dropdowns": "^3.10.1",
     "@progress/kendo-react-intl": "^3.10.1",
+    "@progress/kendo-react-upload": "^3.10.1",
     "@progress/kendo-theme-bootstrap": "^4.10.1",
     "@progress/kendo-theme-material": "^3.10.1",
     "@testing-library/jest-dom": "^4.2.4",
