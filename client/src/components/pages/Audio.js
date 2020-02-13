@@ -28,11 +28,11 @@ class Audio extends React.Component {
     }
 
 
-     // Fetch the list on first mount
-     componentDidMount() {
+    // Fetch the list on first mount
+    componentDidMount() {
         this.getCategories();
         this.getVideos();
-      }
+    }
 
     // Retrieves the categories of items from the Express app
     getCategories = () => {
@@ -43,8 +43,8 @@ class Audio extends React.Component {
             () => console.log(`[INFO][CLIENT][API: /getCategories]:`, this.state.categories)))
     }
 
-     // Retrieves the list of videos from the Express app
-     getVideos = () => {
+    // Retrieves the list of videos from the Express app
+    getVideos = () => {
         console.log("Calling getVideos api endpoint ");
         fetch('/getVideos')
         .then(res => res.json())

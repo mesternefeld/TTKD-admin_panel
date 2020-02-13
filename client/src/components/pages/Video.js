@@ -1,4 +1,5 @@
 import React from 'react';
+import Audio from './Audio';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {ButtonGroup} from 'react-bootstrap';
 import 'react-dropdown/style.css'
@@ -14,18 +15,20 @@ class Video extends React.Component {
 		  super(props);
 
       this.state = {
+        renderAudio:false,
         fetching: true,
         selectedOption: null,
         events: {},
-        categories:[]
+        categories:[],
         }
       
       // Allows these functions access to this (so they can access this.state)
       this.handleChange = this.handleChange.bind(this);
       this.getCategories = this.getCategories.bind(this);
+      Audio = new Audio();
     }
 
-     // Fetch the list on first mount
+    // Fetch the list on first mount
     componentDidMount() {
       this.getCategories();
     }
@@ -56,6 +59,7 @@ class Video extends React.Component {
     };
     
     render(){
+      console.log("Audio:", {this:this.state.renderAudio});
         return(
             <div className="add-video-content">
                 <p>Add Video Page!</p>
@@ -71,10 +75,19 @@ class Video extends React.Component {
                 <ButtonGroup horizontal= "true">
                   <Button type="primary"onClick={event =>  window.location.href='./Dashboard'}> Cancel </Button>
                   <Button type="primary"> Add Video </Button>
-                  <Button type="primary"> Add Audio</Button>
+                  <Button type="primary"onClick={event => this.setState({renderAudio: true})}> Add Audio</Button>
                 </ButtonGroup>
+                <div>
+                  {this.renderedAudio(this.state.renderAudio)}
+                </div>
             </div>
         );
+    }
+
+    renderedAudio(renderAudio){
+      if(this.state.renderAudio === true){
+        return <Audio />;
+      }
     }
 }
 
