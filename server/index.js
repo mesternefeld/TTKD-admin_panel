@@ -7,6 +7,7 @@ var getCategories = require('./routes/getCategories');
 var getVideos = require('./routes/getVideos');
 var addVideo = require('./routes/addVideo');
 var addAudio = require('./routes/addAudio');
+var getUsers = require('./routes/getUsers');
 
 var app = express();
 
@@ -22,6 +23,7 @@ app.use("/getCategories?", getCategories);
 app.use("/getVideos?", getVideos);
 app.use("/addVideo?", addVideo);
 app.use("/addAudio?", addAudio);
+app.use("/getUsers?", getUsers);
 
 
 // An api endpoint that returns a short list of items
