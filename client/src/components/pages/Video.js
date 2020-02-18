@@ -25,7 +25,6 @@ class Video extends React.Component {
       // Allows these functions access to this (so they can access this.state)
       this.handleChange = this.handleChange.bind(this);
       this.getCategories = this.getCategories.bind(this);
-      Audio = new Audio();
     }
 
     // Fetch the list on first mount
@@ -59,7 +58,6 @@ class Video extends React.Component {
     };
     
     render(){
-      console.log("Audio:", {this:this.state.renderAudio});
         return(
             <div className="add-video-content">
                 <p>Add Video Page!</p>
@@ -86,7 +84,8 @@ class Video extends React.Component {
 
     renderedAudio(renderAudio){
       if(this.state.renderAudio === true){
-        return <Audio />;
+        this.Audio = <Audio />;
+        return this.Audio;
       }
     }
 }

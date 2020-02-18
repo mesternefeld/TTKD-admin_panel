@@ -1,4 +1,5 @@
 import React from 'react';
+import Steps from './Steps';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {ButtonGroup} from 'react-bootstrap';
 import 'react-dropdown/style.css'
@@ -14,6 +15,7 @@ class Audio extends React.Component {
 		super(props);
 
 		this.state = {
+            renderSteps: false,
             fetching: true,
             selectedOption: null,
             events: {},
@@ -82,10 +84,21 @@ class Audio extends React.Component {
                     <ButtonGroup horizontal= "true">
                     <Button type="primary" onClick={event =>  window.location.href='./Dashboard'}> Cancel </Button>
                     <Button type="primary"> Pair Content </Button>
+                    <Button type="primary" onClick={event => this.setState({renderSteps: true})}> Add Steps</Button>
                     </ButtonGroup>
+                </div>
+                <div>
+                    {this.renderedSteps(this.state.renderSteps)}
                 </div>
             </div>
         );
+    }
+
+    renderedSteps(renderSteps){
+        if(this.state.renderSteps === true){
+          this.Steps = <Steps />;
+          return this.Steps;
+        }
     }
 }
 
