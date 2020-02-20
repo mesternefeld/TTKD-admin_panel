@@ -2,15 +2,7 @@
 import React from "react";
 //import {Glyphicon} from "react-bootstrap";
 import { Button, Navbar, Nav, NavDropdown, Form, FormControl } from 'react-bootstrap';
-// import {
-//     Homepage,
-//     List,
-//     Dashboard,
-//     FileStructure,
-//     Audio, 
-//     Steps, 
-//     Video
-//   } from "./../pages";
+import { logout } from "../../components/utilities/Login.js";
 
 class Header extends React.Component {
     render() {
@@ -38,6 +30,7 @@ class Header extends React.Component {
                     <Form inline>
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                     <Button variant="outline-success">Search</Button>
+                    <Nav.Link href="" onClick={logout}>Logout</Nav.Link>
                     </Form>
                 </Navbar.Collapse>
                 </Navbar>
