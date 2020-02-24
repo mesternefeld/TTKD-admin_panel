@@ -2,14 +2,19 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+var bodyParser = require('body-parser');
 
 var getCategories = require('./routes/getCategories');
 var getVideos = require('./routes/getVideos');
 var addVideo = require('./routes/addVideo');
 var addAudio = require('./routes/addAudio');
 var getUsers = require('./routes/getUsers');
+var checkToken = require('./routes/checkToken');
 
 var app = express();
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -24,6 +29,7 @@ app.use("/getVideos?", getVideos);
 app.use("/addVideo?", addVideo);
 app.use("/addAudio?", addAudio);
 app.use("/getUsers?", getUsers);
+app.use("/checkToken?", checkToken);
 
 
 // An api endpoint that returns a short list of items
