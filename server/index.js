@@ -2,11 +2,16 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+var bodyParser = require('body-parser');
 
 var getCategories = require('./routes/getCategories');
 var getVideos = require('./routes/getVideos');
 var addVideo = require('./routes/addVideo');
 var addAudio = require('./routes/addAudio');
+var addCategory = require('./routes/addCategory');
+var editCategory = require('./routes/editCategory');
+var removeCategory = require('./routes/removeCategory');
+var getFileStructureCategories = require('./routes/getFileStructureCategories');
 
 var app = express();
 
@@ -15,21 +20,29 @@ app.set('view engine', 'jade');
 
 
 // Serve the static files from the React app
+app.use(express.json());
+//app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'build')));
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 
 
 app.use("/getCategories?", getCategories);
 app.use("/getVideos?", getVideos);
 app.use("/addVideo?", addVideo);
 app.use("/addAudio?", addAudio);
+app.use("/addCategory?", addCategory);
+app.use("/editCategory?", editCategory);
+app.use("/removeCategory?", removeCategory);
+app.use("/getFileStructureCategories", getFileStructureCategories);
 
 
 // An api endpoint that returns a short list of items
-app.get('/api/getList', (req,res) => {
-    var list = ["item1", "item2", "item3"];
-    res.json(list);
-    console.log('Sent list of items: '+ list);
-});
+// app.get('/api/getList', (req,res) => {
+//     var list = ["item1", "item2", "item3"];
+//     res.json(list);
+//     console.log('Sent list of items: '+ list);
+// });
 
 
 // catch 404 and forward to error handler
