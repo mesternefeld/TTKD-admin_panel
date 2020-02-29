@@ -1360,6 +1360,27 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
+"@progress/kendo-data-query@^1.5.2":
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-data-query/-/kendo-data-query-1.5.2.tgz#3ae86a8aa9b76d9f58729fbb6dc5d8fd791b4329"
+  integrity sha512-W1tWOx0aTz5zKVxzuT0rJMmDHWjB/qoOgyWc+/yQimybcLIgjyju/fS/QrzWg1kyg9hPR87/fa0v5V833CAMGQ==
+  dependencies:
+    tslib "^1.7.0"
+
+"@progress/kendo-date-math@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-date-math/-/kendo-date-math-1.2.0.tgz#62fc00b540786b8bb5c7001ecb06b2e3ff05b498"
+  integrity sha512-SVj6lSajwgI/dxqn+Gm1Pe1T8aaQkMmf/1ALETx2pii6SMLDLdCH9tp6Kp+M5t+NDqppLVrdMYDXWng9buiU8A==
+  dependencies:
+    tslib "^1.7.0"
+
+"@progress/kendo-drawing@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-drawing/-/kendo-drawing-1.6.0.tgz#66e9df431f52c7dd9fd5567be80dcbfa3a162281"
+  integrity sha512-9dGlFvW9fMgqAgcbLi+SfTeMUpNYdoVthwNxwAtsRQ+QwcgXJcdzFpLrLBXp17pXpDDFpiOyMqiwjffNGwtc3w==
+  dependencies:
+    pako "^1.0.5"
+
 "@progress/kendo-popup-common@^1.2.2":
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/@progress/kendo-popup-common/-/kendo-popup-common-1.7.0.tgz#d0d29dbc5eacdaba8803aa3d0f69f8a8ad05dbff"
@@ -1373,6 +1394,24 @@
     "@progress/kendo-react-common" "3.10.1"
     prop-types "^15.6.0"
     react-transition-group "^2.2.0"
+
+"@progress/kendo-react-animation@3.11.0", "@progress/kendo-react-animation@^3.10.1":
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-react-animation/-/kendo-react-animation-3.11.0.tgz#0402dcb63ca26b2c27adfbb053eec73a05876a1a"
+  integrity sha512-hMrFIRsn8khSKTc+cH4okK2ruyhajJyjgaBUC9oh3PwDFgvI7/sDzXktUnv6m/E3rnrWjEdF3uuBV75uEpII3g==
+  dependencies:
+    "@progress/kendo-react-common" "3.11.0"
+    prop-types "^15.6.0"
+    react-transition-group "^2.2.0"
+
+"@progress/kendo-react-buttons@3.11.0":
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-react-buttons/-/kendo-react-buttons-3.11.0.tgz#b8c72629a84a4328c93dc851ef8c3230191220b4"
+  integrity sha512-+cVYkarj/MAuQk08EqBm1OZRx/QagZZ6BanlI8JCtb/GJUYDRoi17vWStR4iIvIZ849qAL3l0GsqSt2eAZHHZw==
+  dependencies:
+    "@progress/kendo-react-common" "3.11.0"
+    "@progress/kendo-react-popup" "3.11.0"
+    prop-types "^15.6.0"
 
 "@progress/kendo-react-buttons@^3.10.1":
   version "3.10.1"
@@ -1391,6 +1430,33 @@
     "@telerik/kendo-draggable" "2.0.0"
     prop-types "^15.6.0"
 
+"@progress/kendo-react-common@3.11.0":
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-react-common/-/kendo-react-common-3.11.0.tgz#b9d3a0e32d0571ae754ad2d68c0fd3bbee1063a1"
+  integrity sha512-QCLQh8w1qaTqzGAxey8Sn94xafHfNguccsuFzVWsqteuJd71HfLjwToMuuRSQFrMTs3ksqndUszvjrLB0gp/PA==
+  dependencies:
+    "@telerik/kendo-draggable" "2.0.0"
+    prop-types "^15.6.0"
+
+"@progress/kendo-react-data-tools@^3.11.0":
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-react-data-tools/-/kendo-react-data-tools-3.11.0.tgz#ba0edcc6ce78def7270ada9d36cb6f75ad4bdb67"
+  integrity sha512-nQyPazxQNawbuYKL7jz8x9OLWcK1mkoFriLovvuSK8h8OnCi+TNh72jGzJWzR8ij1/RLP0h4bYHbzHflzAbASA==
+  dependencies:
+    "@progress/kendo-react-common" "3.11.0"
+    prop-types "^15.6.0"
+
+"@progress/kendo-react-dateinputs@^3.11.0":
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-react-dateinputs/-/kendo-react-dateinputs-3.11.0.tgz#5ea573f57095b32ecd6431f84aac2b00d8ae6e93"
+  integrity sha512-uIxWw1DIOJPUEir3H59Pz5djj3PbZDTJXnm83n9dXV9oV5RLEBnZ9Y1/PMKV0Y2kzltYM4AgXFI8ZUW66JG7EQ==
+  dependencies:
+    "@progress/kendo-date-math" "1.2.0"
+    "@progress/kendo-react-buttons" "3.11.0"
+    "@progress/kendo-react-common" "3.11.0"
+    "@progress/kendo-react-popup" "3.11.0"
+    prop-types "^15.6.0"
+
 "@progress/kendo-react-dropdowns@^3.10.1":
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/@progress/kendo-react-dropdowns/-/kendo-react-dropdowns-3.10.1.tgz#fc43878737716069168ec93aa34dce0b4bfe704e"
@@ -1398,6 +1464,15 @@
   dependencies:
     "@progress/kendo-react-common" "3.10.1"
     "@progress/kendo-react-popup" "3.10.1"
+    prop-types "^15.6.0"
+
+"@progress/kendo-react-inputs@^3.11.0":
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-react-inputs/-/kendo-react-inputs-3.11.0.tgz#b9e4aa77751709ab557f744dad34e2888ecfe882"
+  integrity sha512-1yjIN/vQ2QPmUyY9qWDDcLjKfyy7+wXSX+cFUW6tX7qaFqvnpb4tp0q1O69Zb+vqVX2Wl8kiR3TVuqEJsovKww==
+  dependencies:
+    "@progress/kendo-react-common" "3.11.0"
+    "@progress/kendo-react-popup" "3.11.0"
     prop-types "^15.6.0"
 
 "@progress/kendo-react-intl@^3.10.1":
@@ -1416,6 +1491,32 @@
     "@progress/kendo-popup-common" "^1.2.2"
     "@progress/kendo-react-animation" "3.10.1"
     "@progress/kendo-react-common" "3.10.1"
+    prop-types "^15.6.0"
+
+"@progress/kendo-react-popup@3.11.0":
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-react-popup/-/kendo-react-popup-3.11.0.tgz#effbf394e7cb3ed7735283089fbc2b91bc869a14"
+  integrity sha512-81VLaFk0pVkYtp5Ilhojluglt9JAA7xWzN1drFu2WZQmvbEPnhirJfwNy+wijWzuqg4wl8iiLhTzn6e5boZEzw==
+  dependencies:
+    "@progress/kendo-popup-common" "^1.2.2"
+    "@progress/kendo-react-animation" "3.11.0"
+    "@progress/kendo-react-common" "3.11.0"
+    prop-types "^15.6.0"
+
+"@progress/kendo-react-treelist@^3.11.0":
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-react-treelist/-/kendo-react-treelist-3.11.0.tgz#bab237ea73c4a09be97549f378f8040de3dcd750"
+  integrity sha512-H1fiX7pGoR4gd1wwd2QOvF2aLr6OqwT09XM74x0BF/I2GcI5Ols1JW2u0eVrijq2xgKeRIIZcOEyysY5pUmZEQ==
+  dependencies:
+    "@progress/kendo-react-common" "3.11.0"
+    prop-types "^15.6.0"
+
+"@progress/kendo-react-treeview@^3.10.1":
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-react-treeview/-/kendo-react-treeview-3.11.0.tgz#bb99333b15d12d317adf8f2a4fde7725406b4fee"
+  integrity sha512-+3XobO47XW9UcP1j20+8hl9fW4UFH/88Wk/SZ4IS52Xm+kQ3MJACBwPkns0XcuIWbIKVitG0eMU1afJGTAtetA==
+  dependencies:
+    "@progress/kendo-react-common" "3.11.0"
     prop-types "^15.6.0"
 
 "@progress/kendo-react-upload@^3.10.1":
@@ -7973,6 +8074,11 @@ p-try@^2.0.0:
   resolved "https://registry.yarnpkg.com/p-try/-/p-try-2.2.0.tgz#cb2868540e313d61de58fafbe35ce9004d5540e6"
   integrity sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==
 
+pako@^1.0.5:
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/pako/-/pako-1.0.11.tgz#6c9599d340d54dfd3946380252a35705a6b992bf"
+  integrity sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw==
+
 pako@~1.0.5:
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/pako/-/pako-1.0.10.tgz#4328badb5086a426aa90f541977d4955da5c9732"
@@ -10936,6 +11042,11 @@ ts-pnp@1.1.5, ts-pnp@^1.1.2:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/ts-pnp/-/ts-pnp-1.1.5.tgz#840e0739c89fce5f3abd9037bb091dbff16d9dec"
   integrity sha512-ti7OGMOUOzo66wLF3liskw6YQIaSsBgc4GOAlWRnIEj8htCxJUxskanMUoJOD6MDCRAXo36goXJZch+nOS0VMA==
+
+tslib@^1.7.0:
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.11.1.tgz#eb15d128827fbee2841549e171f45ed338ac7e35"
+  integrity sha512-aZW88SY8kQbU7gpV19lN24LtXh/yD4ZZg6qieAJDDg+YBsJcSmLGK9QpnUjAKVG/xefmvJGd1WUmfpT/g6AJGA==
 
 tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.3:
   version "1.10.0"
