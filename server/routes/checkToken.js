@@ -36,13 +36,14 @@ router.post('/', async (req, res, next) => {
     });
 
     if(!payload){
-        return res.send({login: false});
+        return res.status(401).send('This user session has expired.');
+        //return res.send({login: false});
     }
     var checked = checkUsername(payload["email"]);
     if(checked){
-        return res.send({login: true});
+        return res.status(200).send();
     }else{
-        return res.send({login: false});
+        return res.status(401).send('This user does not have permission to login.');
     }
     //var payload = verify().catch();
     //console.log("HERE");
