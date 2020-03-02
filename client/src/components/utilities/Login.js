@@ -2,7 +2,9 @@ import React from "react"
 import { GoogleLogin } from 'react-google-login';
 
 export const checkLogin = () => {
-	if(sessionStorage.getItem("email") !== null){
+	console.log("WHAT UP");
+	if(sessionStorage.getItem("token") !== null){
+		console.log(sessionStorage.getItem("token"));
 		return true;
 	} else {
 		return false;
@@ -21,23 +23,22 @@ export class Login extends React.Component{
 	
 	responseGoogle(response){
 		console.log(response.tokenObj.id_token);
-		
-		if(response.profileObj && response.profileObj.email !== undefined){
-			this.setState({
-				isSignedIn: true
-			  });
-			sessionStorage.setItem("email", response.profileObj.email);
-		}
-
 		var token = {};
 		token["id_token"] = response.tokenObj.id_token;
 		var tokenStr = JSON.stringify(token);
-		fetch(`/checkToken`, {
+		
+		var tokenValid = fetch(`/checkToken`, {
 			method: "POST",
 			headers: {'Content-Type': 'application/json; charset=utf-8', },
 			body: tokenStr
 		})
-		//window.location = "/";
+		if(response.profileObj && response.profileObj.email !== undefined){
+			this.setState({
+				isSignedIn: true
+			  });
+		sessionStorage.setItem("token", response.tokenObj.id_token);
+		}
+		window.location = "/";
 	}
 
 	render() {

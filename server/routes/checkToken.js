@@ -4,7 +4,17 @@ const {URLSearchParams} = require('url');
 const {OAuth2Client} = require('google-auth-library');
 var router = express.Router();
 
-router.post('/', (req, res, next) => {
+var username_list = ["mxs7353@g.rit.edu", "rissity@gmail.com"];
+
+function checkUsername(username){
+    if(username_list.includes(username)){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+router.post('/', async (req, res, next) => {
     //res.json(videos);
     //res.send(categories);
     var CLIENT_ID = "402862016858-3316mp00ucrloj1fih46qmf1dgf6cdh8.apps.googleusercontent.com";
@@ -15,14 +25,29 @@ router.post('/', (req, res, next) => {
             idToken: req.body["id_token"],
             audience: CLIENT_ID,
         });
-        console.log(ticket);
+        //console.log(ticket);
         const payload = ticket.getPayload();
         console.log(payload);
+        return payload;
+        
     }
-    var payload = verify().catch(console.error);
-    console.log(payload);
-    res.send({ status: 'SUCCESS' });
-    console.log('[INFO][SERVER][API: /checkToken] Checking Token: ');
+    var payload = await verify().catch(function (error) {
+        console.log(error);
+    });
+
+    if(!payload){
+        return res.send({login: false});
+    }
+    var checked = checkUsername(payload["email"]);
+    if(checked){
+        return res.send({login: true});
+    }else{
+        return res.send({login: false});
+    }
+    //var payload = verify().catch();
+    //console.log("HERE");
+    
+    //console.log('[INFO][SERVER][API: /checkToken] Checking Token: ');
 });
 
 module.exports = router;
