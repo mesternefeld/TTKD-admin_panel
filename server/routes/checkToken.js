@@ -37,7 +37,6 @@ router.post('/', async (req, res, next) => {
 
     if(!payload){
         return res.status(401).send('This user session has expired.');
-        //return res.send({login: false});
     }
     var checked = checkUsername(payload["email"]);
     if(checked){

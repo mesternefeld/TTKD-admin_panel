@@ -2,13 +2,21 @@ import React from "react"
 import { GoogleLogin } from 'react-google-login';
 
 export const checkLogin = () => {
-	console.log("WHAT UP");
+	var token = sessionStorage.getItem("token");
 	if(sessionStorage.getItem("token") !== null){
-		console.log(sessionStorage.getItem("token"));
-		return true;
+		return checkLoginToken(token);
 	} else {
 		return false;
 	}
+};
+
+export const checkLoginToken = (token) => {
+	var tokenValid = fetch(`/checkToken`, {
+		method: "POST",
+		headers: {'Content-Type': 'application/json; charset=utf-8', },
+		body: tokenStr
+	});
+	return tokenValid;
 };
 
 export class Login extends React.Component{
@@ -27,16 +35,10 @@ export class Login extends React.Component{
 		token["id_token"] = response.tokenObj.id_token;
 		var tokenStr = JSON.stringify(token);
 		
-		var tokenValid = fetch(`/checkToken`, {
-			method: "POST",
-			headers: {'Content-Type': 'application/json; charset=utf-8', },
-			body: tokenStr
-		})
+		var tokenValid = checkLoginToken(tokenStr);
+
 		if(response.profileObj && response.profileObj.email !== undefined){
-			this.setState({
-				isSignedIn: true
-			  });
-		sessionStorage.setItem("token", response.tokenObj.id_token);
+			sessionStorage.setItem("token", response.tokenObj.id_token);
 		}
 		window.location = "/";
 	}
