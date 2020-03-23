@@ -1,5 +1,5 @@
 import React from 'react';
-import Steps from './Steps';
+//import Steps from './Steps';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {ButtonGroup} from 'react-bootstrap';
 import 'react-dropdown/style.css'
@@ -15,12 +15,13 @@ class Audio extends React.Component {
 		super(props);
 
 		this.state = {
+            //currentCategorie: null,
             renderSteps: false,
             fetching: true,
             selectedOption: null,
             events: {},
             categories: [],
-            videos: []
+            videos: [],
         }
         
         // Allows these functions access to this (so they can access this.state)
@@ -62,6 +63,7 @@ class Audio extends React.Component {
       };
 
     render(){
+        console.log('A dropdown', this.props.categorie);
         return(
              <div className="add-audio-content">
                 <p>Add Audio Page!</p>
@@ -74,12 +76,17 @@ class Audio extends React.Component {
                 removeUrl={'https://demos.telerik.com/kendo-ui/service-v4/upload/remove'}
                 className="audio-upload"
                 />
-                <div>
-                    <DropDownList data={this.state.categories} defaultValue="Select a Category" className= "audio-dropdown-category"/>
-                </div>
-                <div>
+                {/* <div>
+                    <DropDownList 
+                    data={ this.state.categorie }
+                    ref= {component => this.audioDropdown = component}
+                    defaultValue={"Select a Categorie"}
+                    className= "audio-dropdown-category"
+                    />
+                </div> */}
+                {/* <div>
                     <DropDownList data={this.state.videos} defaultValue="Select a Video" className= "audio-dropdown-video"/>  
-                </div>
+                </div> */}
                 <div>
                     <ButtonGroup horizontal= "true">
                     <Button type="primary" onClick={event =>  window.location.href='./Dashboard'}> Cancel </Button>
@@ -88,18 +95,18 @@ class Audio extends React.Component {
                     </ButtonGroup>
                 </div>
                 <div>
-                    {this.renderedSteps(this.state.renderSteps)}
+                    {/* {this.renderedSteps(this.state.renderSteps)} */}
                 </div>
             </div>
         );
     }
 
-    renderedSteps(renderSteps){
-        if(this.state.renderSteps === true){
-          this.Steps = <Steps />;
-          return this.Steps;
-        }
-    }
+    // renderedSteps(renderSteps){
+    //     if(this.state.renderSteps === true){
+    //       this.Steps = <Steps />;
+    //       return this.Steps;
+    //     }
+    // }
 }
 
 export default Audio;

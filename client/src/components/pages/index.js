@@ -5,6 +5,7 @@ import FileStructure from "./FileStructure.js";
 import Audio from "./Audio.js";
 import Steps from "./Steps.js";
 import Video from "./Video.js";
+import Content from "./Content.js"
 
 export {
     Homepage,
@@ -13,7 +14,8 @@ export {
     FileStructure,
     Audio, 
     Steps, 
-    Video
+    Video,
+    Content
 }
 
 // export { default as Homepage } from './Homepage';

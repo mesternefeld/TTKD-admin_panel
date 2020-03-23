@@ -10,7 +10,8 @@ import {
   FileStructure,
   Audio, 
   Steps, 
-  Video
+  Video,
+  Content
 } from "./components/pages";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
                 <Route exact path="/Audio" component={Audio}/>
                 <Route exact path="/Steps" component={Steps}/>
                 <Route exact path="/Video" component={Video}/>
+                <Route exact path="/Content" component={Content}/>
               </Switch>
         </div>
       </BrowserRouter>

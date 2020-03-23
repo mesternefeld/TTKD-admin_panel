@@ -1,14 +1,13 @@
 import React from 'react';
-import Audio from './Audio';
+//import Audio from './Audio';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {ButtonGroup} from 'react-bootstrap';
 import 'react-dropdown/style.css'
 import { Upload } from '@progress/kendo-react-upload';
 import "@progress/kendo-theme-bootstrap/dist/all.css";
 import "@progress/kendo-theme-material/dist/all.css";
-import {DropDownList} from '@progress/kendo-react-dropdowns';
+// import {DropDownList} from '@progress/kendo-react-dropdowns';
 import {Button} from "@progress/kendo-react-buttons";
-
 
 class Video extends React.Component {
     constructor(props){
@@ -25,6 +24,7 @@ class Video extends React.Component {
       // Allows these functions access to this (so they can access this.state)
       this.handleChange = this.handleChange.bind(this);
       this.getCategories = this.getCategories.bind(this);
+      
     }
 
     // Fetch the list on first mount
@@ -61,12 +61,23 @@ class Video extends React.Component {
         return(
             <div className="add-video-content">
                 <p>Add Video Page!</p>
-                 <DropDownList data={this.state.categories} defaultValue="Select a Category"  className="blah"/>
+                 {/* <DropDownList 
+                  data={this.state.categories} 
+                  defaultValue="Select a Category"
+                  ref= {component => this.dropdownlist = component}
+                  onChange={() => this.currentCategorie = this.dropdownlist.value}
+                  //className="catDropdown"
+                /> */}
                  <Upload
                   batch={false}
                   multiple={true}
                   defaultFiles={[]}
                   withCredentials={false}
+                  onStatusChange={(event) => this.setState({
+                    uploadFiles: event.newState
+                  })}
+                  // onAdd={() => console.log("Video add:", this.props.currentCategorie)}
+                  //onBeforeUpload={() => console.log('about to upload')}
                   saveUrl={'https://demos.telerik.com/kendo-ui/service-v4/upload/save'}
                   removeUrl={'https://demos.telerik.com/kendo-ui/service-v4/upload/remove'}
                 />
@@ -76,18 +87,24 @@ class Video extends React.Component {
                   <Button type="primary"onClick={event => this.setState({renderAudio: true})}> Add Audio</Button>
                 </ButtonGroup>
                 <div>
-                  {this.renderedAudio(this.state.renderAudio)}
+                  {/*this.renderedAudio(this.state.renderAudio)*/}
                 </div>
             </div>
         );
     }
-
-    renderedAudio(renderAudio){
-      if(this.state.renderAudio === true){
-        this.Audio = <Audio />;
-        return this.Audio;
-      }
-    }
+   
+    // renderedAudio(renderAudio){
+    //   if(this.state.renderAudio === true){
+    //     this.audio = <Audio
+    //     ref = {component => this.audio = component}
+    //     currentCategorie={this.currentCategorie}
+    //     />;
+    //     // console.log('==================== \n Audio categories', this.audio.props.currentCategorie, "\n====================");
+    //     // console.log('==================== \n VA dropdown', this.audio, "\n====================");
+    //     // //console.log('==================== \n upload files in audio:', this.state.uploadFiles[0].getRawFile(), "\n ==============");
+    //     return this.audio;
+    //   }
+    // }
 }
 
 export default Video;
