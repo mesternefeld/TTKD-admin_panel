@@ -26,7 +26,7 @@ export class Login extends React.Component{
 			this.setState({
 				isSignedIn: true
 			  });
-			sessionStorage.setItem("email", response.profileObj.email);
+			//sessionStorage.setItem("email", response.profileObj.email);
 		}
 		window.location = "/";
 	}

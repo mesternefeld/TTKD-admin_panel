@@ -1,32 +1,45 @@
 import React from "react"
 import { GoogleLogin } from 'react-google-login';
 
-export const checkLogin = () => {
-	var token = sessionStorage.getItem("token");
-	if(sessionStorage.getItem("token") !== null){
-		return checkLoginToken(token);
+export const checkLogin = async() => {
+	var token = "";
+	var cookie = document.cookie;
+	var decodedCookie = decodeURIComponent(document.cookie);
+	var ca = decodedCookie.split(';');
+	for(var i = 0; i <ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0) === ' ') {
+			c = c.substring(1);
+		}
+		if (c.indexOf("token") === 0) {
+			token = c.substring("token".length + 1, c.length);
+		}
+	  }
+	
+	if(token !== ""){
+		return await checkLoginToken(token);
 	} else {
 		return false;
 	}
 };
 
-export const checkLoginToken = (token) => {
-	var tokenValid = fetch(`/checkToken`, {
+export const checkLoginToken = async (token) => {
+	var tokenValid = await fetch(`/checkToken`, {
 		method: "POST",
 		headers: {'Content-Type': 'application/json; charset=utf-8', },
-		body: tokenStr
+		body: token
 	});
-	return tokenValid;
+	console.log(tokenValid["status"] !== 200);
+	if(tokenValid["status"] !== 200){
+		return false;
+	}else{
+		return true;
+	}
 };
 
 export class Login extends React.Component{
 	constructor(props){
 		super(props);
-
-		this.state = {
-			isSignedIn: false
-		};
-
 	}
 	
 	responseGoogle(response){
@@ -37,8 +50,8 @@ export class Login extends React.Component{
 		
 		var tokenValid = checkLoginToken(tokenStr);
 
-		if(response.profileObj && response.profileObj.email !== undefined){
-			sessionStorage.setItem("token", response.tokenObj.id_token);
+		if(tokenValid){
+			document.cookie = "token=" + response.tokenObj.id_token;
 		}
 		window.location = "/";
 	}
@@ -67,6 +80,6 @@ export class Login extends React.Component{
 	}
 }
 export const logout = (response) => {
-	sessionStorage.clear();
+	document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 	window.location = "/";
 };

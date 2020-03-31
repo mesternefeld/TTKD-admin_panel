@@ -14,35 +14,49 @@ import {
 } from "./components/pages";
 import { checkLogin, Login } from "./components/utilities/Login.js";
 
-function App() {
-if(checkLogin()) {
-  return (
-    <div className="App">
-      <Header/>
-      <BrowserRouter>
-        <div class="container">
-              <Switch>
-                <Route exact path="/" component={Homepage}/>
-                <Route exact path="/List" component={List}/>
-                <Route exact path= "/Dashboard" component={Dashboard}/>
-                <Route exact path="/FileStructure" component={FileStructure}/>
-                <Route exact path="/Audio" component={Audio}/>
-                <Route exact path="/Steps" component={Steps}/>
-                <Route exact path="/Video" component={Video}/>
-              </Switch>
-        </div>
-        </BrowserRouter>
-      </div>
-    );
-  }else{
-    return (
-      <div className="App">
-        <Header/>
-        <h1>Please log in below</h1>
-        <Login />
-      </div>
-    );
+export default class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+			loggedIn: false
+		}
+  }
+
+  componentDidMount() {
+    var log = checkLogin();
+    console.log(log);
+    this.state.loggedIn = log;
+
+	}
+
+  render() {
+    if(this.state.loggedIn) {
+      return (
+        <div className="App">
+          <Header/>
+          <BrowserRouter>
+            <div className="container">
+                  <Switch>
+                    <Route exact path="/" component={Homepage}/>
+                    <Route exact path="/List" component={List}/>
+                    <Route exact path= "/Dashboard" component={Dashboard}/>
+                    <Route exact path="/FileStructure" component={FileStructure}/>
+                    <Route exact path="/Audio" component={Audio}/>
+                    <Route exact path="/Steps" component={Steps}/>
+                    <Route exact path="/Video" component={Video}/>
+                  </Switch>
+            </div>
+            </BrowserRouter>
+          </div>
+        );
+      }else{
+        return (
+          <div className="App">
+            <Header/>
+            <h1>Please log in below</h1>
+            <Login />
+          </div>
+        );
+      }
   }
 }
-
-export default App;
