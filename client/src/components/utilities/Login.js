@@ -40,6 +40,16 @@ export const checkLoginToken = async (token) => {
 export class Login extends React.Component{
 	constructor(props){
 		super(props);
+		this.state = {
+			loggedIn: false
+		}
+	}
+
+	componentDidMount() {
+		var log = checkLogin();
+		console.log(log);
+		this.state.loggedIn = log;
+	
 	}
 	
 	responseGoogle(response){
@@ -58,7 +68,7 @@ export class Login extends React.Component{
 
 	render() {
 		const successCallback = this.responseGoogle.bind(this);
-		if (checkLogin()) {
+		if (this.state.loggedIn) {
 			return (
 				<div></div>
 			);
