@@ -24,6 +24,7 @@ export const checkLogin = async() => {
 };
 
 export const checkLoginToken = async (token) => {
+	console.log(token);
 	var tokenValid = await fetch(`/checkToken`, {
 		method: "POST",
 		headers: {'Content-Type': 'application/json; charset=utf-8', },

@@ -18,14 +18,16 @@ router.post('/', async (req, res, next) => {
     //res.json(videos);
     //res.send(categories);
     var CLIENT_ID = "402862016858-3316mp00ucrloj1fih46qmf1dgf6cdh8.apps.googleusercontent.com";
+    console.log("resquest body");
     console.log(req.body);
+
     const client = new OAuth2Client(CLIENT_ID);
     async function verify() {
         const ticket = await client.verifyIdToken({
             idToken: req.body["id_token"],
             audience: CLIENT_ID,
         });
-        //console.log(ticket);
+        console.log("in verify");
         const payload = ticket.getPayload();
         console.log(payload);
         return payload;
@@ -34,14 +36,19 @@ router.post('/', async (req, res, next) => {
     var payload = await verify().catch(function (error) {
         console.log(error);
     });
+    console.log("after verify");
+    console.log(payload);
 
     if(!payload){
         return res.status(401).send('This user session has expired.');
     }
     var checked = checkUsername(payload["email"]);
+    console.log("HERE");
     if(checked){
-        return res.status(200).send();
+        console.log("ischcked");
+        res.status(200).send("Email Valid");
     }else{
+        console.log("nope");
         return res.status(401).send('This user does not have permission to login.');
     }
     //var payload = verify().catch();
