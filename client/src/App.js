@@ -22,11 +22,9 @@ export default class App extends React.Component {
 		}
   }
 
-  componentDidMount() {
-    var log = checkLogin();
-    console.log(log);
-    this.state.loggedIn = log;
-
+  async componentDidMount() {
+    var log = await checkLogin();
+    this.setState({"loggedIn": log});
 	}
 
   render() {
