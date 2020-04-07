@@ -29,12 +29,12 @@ class Header extends React.Component {
                         <NavDropdown.Item href="./FileStructure">File Structure</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="./Content">Edit Content</NavDropdown.Item>
-                        <NavDropdown.Divider />
+                        {/* <NavDropdown.Divider />
                         <NavDropdown.Item href="./Audio">Add Audio</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="./Steps">Add Steps</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="./Video">Add Video</NavDropdown.Item>
+                        <NavDropdown.Item href="./Video">Add Video</NavDropdown.Item> */}
                     </NavDropdown>
                     </Nav>
                     <Form inline>
