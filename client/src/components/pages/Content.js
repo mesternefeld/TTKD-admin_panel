@@ -1,5 +1,4 @@
 import React from 'react';
-//import {ButtonGroup} from 'react-bootstrap';
 import {DropDownList} from '@progress/kendo-react-dropdowns';
 
 import Video from './Video';
@@ -13,7 +12,7 @@ class Content extends React.Component {
             name: null,
             currentCategorie: null,
             currentVideo: null,
-            //currentAudio: null,
+            currentAudio: null,
             currentSteps: null,
         }
 
@@ -69,19 +68,16 @@ class Content extends React.Component {
             <div className="add-content">
                 <p> The Content Page!</p>
                 <DropDownList 
+                  className="catDropdown"
                   data={this.state.categories} 
                   defaultValue="Select a Category"
                   ref= {component => this.dropdownlist = component}
-                  onChange={() => this.setState({
-                    currentCategorie: this.dropdownlist.value}
-                    )}
-                  //className="catDropdown"
+                  onChange={() => this.setState({currentCategorie: this.dropdownlist.value})}
                 />
                 <div>
                     <DropDownList data={this.state.videos} defaultValue="Select a Video" className= "audio-dropdown-video"/>  
                 </div>
                 <Video />
-                {/* <Audio categorie={this.state.currentCategorie}/> */}
                 <Steps />
             </div>
         );
@@ -90,6 +86,6 @@ class Content extends React.Component {
 }
 
 
- // Returns the Content object and posts it to AWS
+// Returns the Content object and posts it to AWS
 
 export default Content;
