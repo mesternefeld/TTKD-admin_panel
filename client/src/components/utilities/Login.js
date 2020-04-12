@@ -27,11 +27,11 @@ export const checkLogin = async() => {
 };
 
 export const checkLoginToken = async (token) => {
-	var tokenValid = await fetch(`/checkToken`, {
-		method: "POST",
-		headers: {'Content-Type': 'application/json; charset=utf-8', },
-		body: token
+	var tokenValid = await fetch(`https://nuymeuulnc.execute-api.us-east-1.amazonaws.com/checkToken`, {
+		method: "GET",
+		headers: {'Authorization': JSON.parse(token).id_token}
 	});
+	console.log(tokenValid);
 	if(tokenValid["status"] !== 200){
 		return false;
 	}else{
