@@ -35,6 +35,11 @@ export default function MyCommandCell(enterEdit, remove, save, editSave, cancel,
                         <button
                             className="k-button"
                             onClick={() => addChild(dataItem)}>
+                            Add Content
+                        </button>
+                        <button
+                            className="k-button"
+                            onClick={() => addChild(dataItem)}>
                             Add SubCategory
                         </button>
                         <button

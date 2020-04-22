@@ -6,21 +6,31 @@ import {
     TreeListTextEditor
 } from '@progress/kendo-react-treelist';
 import MyCommandCell from './my-command-cell.jsx';
+import { TreeView, processTreeViewItems, handleTreeViewCheckChange, moveTreeViewItem, TreeViewDragAnalyzer, TreeViewDragClue } from '@progress/kendo-react-treeview'
+import '@progress/kendo-react-animation'
+import {CameraVideoFill} from 'react-bootstrap-icons';
 
 const subItemsField = 'category';
 const expandField = 'expanded';
 const editField = 'inEdit';
-
+// const isVideo = this.data.dataItem.isVideo;
+// const style = {
+//     backgroundColor: isVideo ?
+//         "rgb(243, 23, 0, 0.32)" :
+//         "rgb(55, 180, 0,0.32)"
+// };
+const is = (fileName, ext) => new RegExp(`.${ext}\$`).test(fileName);
+const videoIcon = <React.Fragment><CameraVideoFill/></React.Fragment>;
 class FileStructure extends React.Component {
 
     constructor(props){
         super(props);
 
     this.state = {
-        data: [],
+        data: [{}],
         expanded: [1],
         inEdit: [ ],
-        categories: [],
+        awscategories: [],
         total: 1
     }
 
@@ -28,6 +38,7 @@ class FileStructure extends React.Component {
     this.getCategories = this.getCategories.bind(this);
     this.removeCategory = this.removeCategory.bind(this);
     this.editCategory = this.editCategory.bind(this);
+    //this.iconClassName = this.iconClassName.bind(this);
 }
 
     // Fetch the list on first mount
@@ -40,8 +51,8 @@ class FileStructure extends React.Component {
         console.log("Calling getCategories api endpoint ");
         fetch('/getFileStructureCategories')
         .then(res => res.json())
-        .then(categories => this.setState({ data: categories.slice() },
-        () => console.log(`[INFO][CLIENT][API: /getFileStructureCategories]:`, this.state.data)))
+        .then(awscategories => this.setState({ data: awscategories.data},
+        () => console.log(`[INFO][CLIENT][API: /getFileStructureCategories]:`, awscategories.data[0])))
     }
 
     // Sends a category to the Express app to be added
@@ -196,16 +207,31 @@ class FileStructure extends React.Component {
 
     render() {
         const { data, expanded, inEdit } = this.state;
+        console.log(data);
 
         return (
+            <React.Fragment>
             <TreeList
                 style={{ maxHeight: '510px', overflow: 'auto' }}
-                data={mapTree(data, subItemsField, item =>
+                data={mapTree(data, subItemsField, item =>(
                     extendDataItem(item, subItemsField, {
                         [expandField]: expanded.includes(item.id),
-                        [editField]: Boolean(inEdit.find(i => i.id === item.id))
-                    }))
+                        [editField]: Boolean(inEdit.find(i => i.id === item.id) )
+                    }
+                    //,this.iconClassName(item.id, data)
+                )
+                ))
+                    
                 }
+
+                item={data =>
+                    [<span className={this.iconClassName(this.data)} key='0'></span>, this.data]
+                }
+
+                // itemRender={mapTree(data, props =>(
+                //     [<span className={this.iconClassName(props.item)} key='0'></span>, props.item.name]
+                // )}
+                // iconClassName = {iconClassName}
                 editField={editField}
                 expandField={expandField}
                 subItemsField={subItemsField}
@@ -227,7 +253,9 @@ class FileStructure extends React.Component {
                         </button>
                     </TreeListToolbar>
                 }
+                
             />
+            </React.Fragment>
         );
     }
 }
