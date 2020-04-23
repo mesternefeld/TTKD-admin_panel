@@ -157,23 +157,21 @@ class FileStructure extends React.Component {
         console.log("Adding new Category");
         const proxyurl = "https://cors-anywhere.herokuapp.com/";
         try {
-            fetch('https://sfjy3c2yji.execute-api.us-east-1.amazonaws.com/addCategory',{
+            fetch('https://789fzu64fd.execute-api.us-east-1.amazonaws.com/addCategory',{
                 method: 'POST',
+                mode: 'cors',
                 body: JSON.stringify({
                     name: dataItem.name,
                     parentID: this.state.parentID
                 }),
                 headers: {
-                    "Content-Type": "application/json",
-                    "Access-Control-Allow-Origin": "*",
-                    "Access-Control-Allow-Methods": "POST",
-                    "Access-Control-Allow-Headers": "*",
-                    "Access-Control-Allow-Credentials": true}
+                    "Content-Type": "application/json"
+                }
               })
               .then(res => res.json())}
-              catch (err) {
+            catch (err) {
                 console.log(err);
-              }
+            }
     }
 
     // Method for saving an edit since before it used the same save as add, This allows us to differentiate the two.
