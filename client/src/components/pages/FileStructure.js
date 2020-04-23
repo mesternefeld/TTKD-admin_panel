@@ -157,14 +157,18 @@ class FileStructure extends React.Component {
         console.log("Adding new Category");
         const proxyurl = "https://cors-anywhere.herokuapp.com/";
         try {
-            fetch('/addCategory',{
+            fetch('https://sfjy3c2yji.execute-api.us-east-1.amazonaws.com/addCategory',{
                 method: 'POST',
                 body: JSON.stringify({
                     name: dataItem.name,
                     parentID: this.state.parentID
                 }),
                 headers: {
-                    "Content-Type": "application/json"}
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Methods": "POST",
+                    "Access-Control-Allow-Headers": "*",
+                    "Access-Control-Allow-Credentials": true}
               })
               .then(res => res.json())}
               catch (err) {
@@ -194,7 +198,7 @@ class FileStructure extends React.Component {
         }
 
         try {
-            fetch('/editCategory',{
+            fetch('https://sfjy3c2yji.execute-api.us-east-1.amazonaws.com/editCategory',{
                 method: 'POST',
                 body: JSON.stringify({
                     name: dataItem.name,
@@ -203,7 +207,11 @@ class FileStructure extends React.Component {
 
                 }),
                 headers: {
-                    "Content-Type": "application/json"}
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Methods": "POST",
+                    "Access-Control-Allow-Headers": "*"}
+                    
               })
               .then(res => res.json())}
               catch (err) {
@@ -243,14 +251,17 @@ class FileStructure extends React.Component {
         }
 
         try {
-            fetch('/removeCategory',{
+            fetch('https://sfjy3c2yji.execute-api.us-east-1.amazonaws.com/removeCategory',{
                 method: 'POST',
                 body: JSON.stringify({
                     id: dataItem.id,
                     isCat: this.state.isCat
                 }),
                 headers: {
-                    "Content-Type": "application/json"}
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Methods": "POST",
+                    "Access-Control-Allow-Headers": "*"}
               })
               .then(res => res.json())}
               catch (err) {
