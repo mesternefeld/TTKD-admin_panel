@@ -7,7 +7,7 @@ var router = express.Router();
 
 // An api endpoint that returns a success message that the category was successfully added
 router.post('/', function (req, res) {
-  console.log("Received Category to be Added From Frontend: ", req.body.category);
+  console.log("Received Category to be Added From Frontend: ", req.body.name);
 
   const addCat = addCategory(req);
   res.send(req.body.name + '  Successfully Added! ');
