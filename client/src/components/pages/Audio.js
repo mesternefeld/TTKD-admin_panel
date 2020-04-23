@@ -26,7 +26,7 @@ class Audio extends React.Component {
         console.log('A dropdown', this.props.categorie);
         return(
              <div className="add-audio-content">
-                <p>Add Audio Below</p>
+                <legend>Add Audio Below</legend>
                 <Upload
                 batch={false}
                 multiple={true}

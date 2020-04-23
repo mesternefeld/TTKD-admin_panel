@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@progress/kendo-react-inputs": "^3.12.0",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5"
   },

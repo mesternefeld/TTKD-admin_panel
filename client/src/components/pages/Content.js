@@ -3,6 +3,7 @@ import {DropDownList} from '@progress/kendo-react-dropdowns';
 
 import Video from './Video';
 import Steps from './Steps';
+//import {Button, ButtonGroup} from "@progress/kendo-react-buttons";
 
 class Content extends React.Component {
     constructor(props){
@@ -63,13 +64,12 @@ class Content extends React.Component {
     };
     
     render(){
-      console.log("render:", this.state.currentCategorie)
         return(
             <div className="add-content">
-                <p> The Content Page!</p>
+                <legend> The Content Page!</legend>
                 <DropDownList 
                   className="catDropdown"
-                  data={this.state.categories} 
+                  data={this.state.categories}
                   defaultValue="Select a Category"
                   ref= {component => this.dropdownlist = component}
                   onChange={() => this.setState({currentCategorie: this.dropdownlist.value})}
@@ -78,7 +78,7 @@ class Content extends React.Component {
                     <DropDownList data={this.state.videos} defaultValue="Select a Video" className= "audio-dropdown-video"/>  
                 </div>
                 <Video />
-                <Steps />
+                <Steps                 />
             </div>
         );
     }
