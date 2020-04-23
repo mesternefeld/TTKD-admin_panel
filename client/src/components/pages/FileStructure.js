@@ -165,7 +165,7 @@ class FileStructure extends React.Component {
                     parentID: this.state.parentID
                 }),
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "text/plain"
                 }
               })
               .then(res => res.json())}
