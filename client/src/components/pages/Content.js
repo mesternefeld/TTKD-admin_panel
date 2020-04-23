@@ -1,9 +1,12 @@
 import React from 'react';
 import {DropDownList} from '@progress/kendo-react-dropdowns';
-
+import {Input} from '@progress/kendo-react-inputs'
 import Video from './Video';
 import Steps from './Steps';
-//import {Button, ButtonGroup} from "@progress/kendo-react-buttons";
+import {Button} from "@progress/kendo-react-buttons";
+//import { Upload } from '@progress/kendo-react-upload';
+
+
 
 class Content extends React.Component {
     constructor(props){
@@ -18,7 +21,6 @@ class Content extends React.Component {
         }
 
         // Allows these functions access to this (so they can access this.state)
-        this.handleChange = this.handleChange.bind(this);
         this.getCategories = this.getCategories.bind(this);
         this.getVideos = this.getVideos.bind(this);
     }
@@ -55,30 +57,39 @@ class Content extends React.Component {
       .then(categories => this.setState({ categories },
         () => console.log(`[INFO][CLIENT][API: /addVideo]:`, this.state.categories)))
     }
-    
-    handleChange = selectedOption => {
-      this.setState(
-        { selectedOption },
-        () => console.log(`Option selected:`, this.state.selectedOption)
-      );
-    };
+
+    returnContent = () => {
+        console.log(this.state);
+    }
     
     render(){
         return(
             <div className="add-content">
+              <div>
                 <legend> The Content Page!</legend>
+                <Input 
+                  type="primary"
+                  placeholder="Enter Content Name "
+                  ref={component => this.input = component}
+                  onChange={() => this.setState({name: this.input.value})}
+                />
+              </div>
                 <DropDownList 
                   className="catDropdown"
                   data={this.state.categories}
                   defaultValue="Select a Category"
-                  ref= {component => this.dropdownlist = component}
+                  ref={component => this.dropdownlist = component}
                   onChange={() => this.setState({currentCategorie: this.dropdownlist.value})}
                 />
-                <div>
-                    <DropDownList data={this.state.videos} defaultValue="Select a Video" className= "audio-dropdown-video"/>  
-                </div>
-                <Video />
-                <Steps                 />
+                <Video 
+                  //onAdd={console.log(this.props)}
+                  ref ={component => this.video = component}
+                  onChange={(event) => this.setState({currentVideo: event.newState})}
+                />
+                <Steps 
+                transcript = {this.props.transcript}
+                onChange={() => this.setState({currentSteps: this.steps.children.transcipt})}/>
+                <Button type="primary" onClick={() => this.returnContent()}>Upload Data</Button>
             </div>
         );
     }

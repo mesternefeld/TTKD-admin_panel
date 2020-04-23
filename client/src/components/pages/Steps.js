@@ -65,13 +65,13 @@ class Steps extends React.Component {
             let start_time = this.convertToSeconds(value.time);
             let description = value.value;
 
-            newTranscript = newTranscript.concat("{\n" +
+            return newTranscript = newTranscript.concat("{\n" +
                 "start_time: " + start_time + "\n" +
                 "description: " + description + 
                 "\n}\n");
              
         })
-        
+
         console.log("transcribing: " + newTranscript);
 
         this.setState({transcript: newTranscript});

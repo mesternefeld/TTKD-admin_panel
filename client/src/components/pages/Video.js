@@ -8,6 +8,9 @@ import "@progress/kendo-theme-bootstrap/dist/all.css";
 import "@progress/kendo-theme-material/dist/all.css";
 import {Button} from "@progress/kendo-react-buttons";
 
+
+//const upload = <Upload/>;
+
 class Video extends React.Component {
     constructor(props){
 		  super(props);
@@ -15,33 +18,34 @@ class Video extends React.Component {
       this.state = {
         renderAudio:false,
         fetching: true,
-        selectedOption: null,
+        uploadFile: null,
         events: {},
-        categories:[],
       } 
+      this.handleChange = this.handleChange.bind(this);
     }
 
+    handleChange = () => {
+      return this.state.uploadFile;
     
+    };
 
     render(){
         return(
             <div className="add-video-content">
-                 <Upload
+                <Upload
                   batch={false}
-                  multiple={true}
+                  multiple={false}
                   defaultFiles={[]}
                   withCredentials={false}
                   onStatusChange={(event) => this.setState({
-                    uploadFiles: event.newState
+                    uploadFile: event.newState
                   })}
-                  // onAdd={() => console.log("Video add:", this.props.currentCategorie)}
-                  //onBeforeUpload={() => console.log('about to upload')}
+                  onAdd={() => this.handleChange()}
                   saveUrl={'https://demos.telerik.com/kendo-ui/service-v4/upload/save'}
                   removeUrl={'https://demos.telerik.com/kendo-ui/service-v4/upload/remove'}
                 />
                 <ButtonGroup horizontal= "true">
                   <Button type="primary"onClick={event =>  window.location.href='./Dashboard'}> Cancel </Button>
-                  <Button type="primary"> Add Video </Button>
                   <Button type="primary"onClick={event => this.setState({renderAudio: true}) }> Add Audio </Button>
                 </ButtonGroup>
                 <div>

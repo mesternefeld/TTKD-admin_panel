@@ -23,7 +23,7 @@ class Audio extends React.Component {
     }
 
     render(){
-        console.log('A dropdown', this.props.categorie);
+        //console.log('A dropdown', this.props.categorie);
         return(
              <div className="add-audio-content">
                 <legend>Add Audio Below</legend>
