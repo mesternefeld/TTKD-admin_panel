@@ -18,7 +18,7 @@ const editCategory = async (res) => {
     let isCat = req.body.isCat;
 
     try {
-        console.log('[INFO][SERVER][API: /editCategory] Editing this category: ');
+        console.log('[INFO][SERVER][API: /editCategory] Editing this: '+  req.body.name +  " is Cat?: " + isCat);
 
         return await axios.post('https://sfjy3c2yji.execute-api.us-east-1.amazonaws.com/editCategory', {
             title: name,

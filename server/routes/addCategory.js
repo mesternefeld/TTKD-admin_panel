@@ -17,10 +17,9 @@ const addCategory = async (res) => {
   let name = req.body.name;
   let parentID = req.body.parentID;
 
-  console.log("Trying to add category!! => name: " + name + " parentID: "+ parentID);
+  console.log("Trying to add category!! => name: " + name + " parentID: " + parentID);
 
   try {
-    awsCategories = await axios.get('https://sfjy3c2yji.execute-api.us-east-1.amazonaws.com/TestDBFetchall')
     console.log('[INFO][SERVER][API: /addCategory] Adding this category: ');
 
     return await axios.post('https://sfjy3c2yji.execute-api.us-east-1.amazonaws.com/addCategory', {
