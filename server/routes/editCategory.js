@@ -8,11 +8,13 @@ var router = express.Router();
 // An api endpoint that returns a success message that the category was successfully edited
 router.post('/', (req, res) => {
     console.log('[INFO][SERVER][API: /editCategory] Edited Category Name: ', req.body.name);
-    res.send('[INFO][SERVER][API: /editCategory] Edited Category Name: ', req.body.name);
+
+    const editCategory = editCategory(req);
+    res.send('[INFO][SERVER][API: /editCategory] Edited Category Name: ', editCategory);
 });
 
 
-const editCategory = async (res) => {
+const editCategory = async (req) => {
     let name = req.body.name;
     let id = req.body.id;
     let isCat = req.body.isCat;
