@@ -4,7 +4,7 @@ const {URLSearchParams} = require('url');
 const {OAuth2Client} = require('google-auth-library');
 var router = express.Router();
 
-var username_list = ["mxs7353@g.rit.edu", "rissity@gmail.com"];
+var username_list = ["mxs7353@g.rit.edu"];
 
 function checkUsername(username){
     if(username_list.includes(username)){
@@ -27,7 +27,6 @@ router.post('/', async (req, res, next) => {
         });
         const payload = ticket.getPayload();
         return payload;
-        
     }
     var payload = await verify().catch(function (error) {
         console.log(error);

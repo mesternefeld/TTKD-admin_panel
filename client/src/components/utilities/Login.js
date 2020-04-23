@@ -49,6 +49,7 @@ export class Login extends React.Component{
 	
 	responseGoogle(response){
 		var token = {};
+		console.log(response);
 		token["id_token"] = response.tokenObj.id_token;
 		var tokenStr = JSON.stringify(token);
 		
