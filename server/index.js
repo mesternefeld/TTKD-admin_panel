@@ -3,6 +3,7 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
+var cors = require("cors");
 
 var getCategories = require('./routes/getCategories');
 var getVideos = require('./routes/getVideos');
@@ -18,13 +19,21 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-
 // Serve the static files from the React app
 app.use(express.json());
 //app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+
+
+//add cors
+app.use(cors());
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 
 
 app.use("/getCategories?", getCategories);
@@ -34,7 +43,7 @@ app.use("/addAudio?", addAudio);
 app.use("/addCategory?", addCategory);
 app.use("/editCategory?", editCategory);
 app.use("/removeCategory?", removeCategory);
-app.use("/getFileStructureCategories", getFileStructureCategories);
+app.use("/getFileStructureCategories?", getFileStructureCategories);
 
 
 // An api endpoint that returns a short list of items

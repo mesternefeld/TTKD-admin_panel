@@ -2,7 +2,7 @@
 import React from 'react';
 import { TreeListCell } from '@progress/kendo-react-treelist';
 
-export default function MyCommandCell(enterEdit, remove, save, editSave, cancel, addChild, editField) {
+export default function MyCommandCell(enterEdit, remove, save, editSave, cancel, addChild, editField, addVideoContent) {
     return class extends TreeListCell {
         render() {
             const { dataItem } = this.props;
@@ -34,7 +34,7 @@ export default function MyCommandCell(enterEdit, remove, save, editSave, cancel,
                     <td>
                         <button
                             className="k-button"
-                            onClick={() => addChild(dataItem)}>
+                            onClick={() => addVideoContent()}>
                             Add Content
                         </button>
                         <button

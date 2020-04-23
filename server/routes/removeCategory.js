@@ -1,11 +1,38 @@
 var express = require("express");
 const axios = require('axios');
-const {URLSearchParams} = require('url');
+const {
+    URLSearchParams
+} = require('url');
 var router = express.Router();
 
 // An api endpoint that returns a success message that the category was successfully removed
-router.post('/', (req,res) => {
+router.post('/', (req, res) => {
     console.log('[INFO][SERVER][API: /removeCategory] Removed Category: ', req.body.category);
+    res.send('[INFO][SERVER][API: /removeCategory] Removed Category: ', req.body.id);
 });
+
+
+const addCategory = async (res) => {
+    let id = req.body.id;
+    let isCat = req.body.isCat;
+
+    try {
+        console.log('[INFO][SERVER][API: /addCategory] Adding this category: ');
+
+        return await axios.post('https://sfjy3c2yji.execute-api.us-east-1.amazonaws.com/removeCategory', {
+            id: id,
+            isCat: isCat
+
+        }, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
+    } catch (error) {
+        console.error(error)
+        return error;
+    }
+}
 
 module.exports = router;

@@ -163,7 +163,7 @@ router.get('/', (req, res) => {
 
 const getCategories = async (res) => {
     try {
-        awsCategories = await axios.get('https://sfjy3c2yji.execute-api.us-east-1.amazonaws.com/TestDBFetchall')
+        awsCategories = await axios.get('https://v8eklcakr9.execute-api.us-east-1.amazonaws.com/ttkdDBFetchAll?studio_code=ttkd')
         console.log('[INFO][SERVER][API: /getFileStructureCategories] Sent list of Categories: ');
         console.dir("poop:")
         console.dir(awsCategories.data.categories);
@@ -181,15 +181,19 @@ const getCategories = async (res) => {
                 parentID = id;
             }
 
+            //then its a child
             if (parentID != id) {
-                console.log("this is my parent id muhhahaha: ", realCategories[parentID - 1]);
+                console.log("this is my parent id MUHAHA: ", realCategories[parentID - 1]);
                 if (realCategories[parentID - 1].id === parentID) {
                     pushCategory = [{
                         id: id,
                         name: name,
-                        parentID: parentID
+                        parentID: parentID,
+                        category: []
                     }]
                     console.log("pushing this category so help me god: ", pushCategory);
+                    console.log("real categories looks like this rn ");
+                    console.log(realCategories);
                     realCategories[parentID - 1]["category"] = pushCategory;
                     console.log(realCategories[0].category);
                 }
@@ -197,14 +201,18 @@ const getCategories = async (res) => {
             }
             //console.log("this is my parent id muhhahaha: ", realCategories[0] );
 
-            //doesn't already exist in the json
+            //parent id is the same 
             else{
-                realCategories.push({
+                pushCategory = {
                     id: id,
                     name: name,
                     parentID: parentID,
                     category: []
-                });
+                }
+
+                realCategories.push(
+                    pushCategory
+                );
 
             }
 
@@ -212,7 +220,10 @@ const getCategories = async (res) => {
 
             console.log(id, name, parentID);
         }
+        console.log("THIS IS REAL CAT RN BEFORE VIDEOS: ");
+        console.log(realCategories);
 
+        //pushing content into aws 
         for (var k = 0; k < awsContent.length; k++) {
             addingVideo = realCategories;
             var id = awsContent[k].id;

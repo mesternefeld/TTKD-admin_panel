@@ -13,6 +13,7 @@ import {CameraVideoFill} from 'react-bootstrap-icons';
 const subItemsField = 'category';
 const expandField = 'expanded';
 const editField = 'inEdit';
+const serverURL = "https://v8eklcakr9.execute-api.us-east-1.amazonaws.com";
 // const isVideo = this.data.dataItem.isVideo;
 // const style = {
 //     backgroundColor: isVideo ?
@@ -31,7 +32,9 @@ class FileStructure extends React.Component {
         expanded: [1],
         inEdit: [ ],
         awscategories: [],
-        total: 1
+        total: 1,
+        parentID: null,
+        isCat: true
     }
 
     this.addCategory = this.addCategory.bind(this);
@@ -111,6 +114,10 @@ class FileStructure extends React.Component {
 
     addChild = (dataItem) => {
         const newRecord = this.createNewItem();
+        console.log("hit add sub");
+        console.log(dataItem);
+        //set this since we are going to add a category 
+        this.state.parentID = dataItem.id;
 
         this.setState({
             inEdit: [ ...this.state.inEdit, newRecord ],
@@ -122,6 +129,11 @@ class FileStructure extends React.Component {
                 subItems => [ newRecord, ...subItems ]
             )
         });
+    }
+
+    addVideoContent = () => {
+        //TODO: redirect to the add content page !!!
+        window.location.replace("http://stackoverflow.com");
     }
 
     enterEdit = (dataItem) => {
@@ -136,7 +148,28 @@ class FileStructure extends React.Component {
             data: mapTree(this.state.data, subItemsField, item => item.id === itemToSave.id ? itemToSave : item),
             inEdit: this.state.inEdit.filter(i => i.id !== itemToSave.id)
         });
-        this.addCategory(itemToSave);
+        //this.addCategory(itemToSave);
+
+        console.log("this is my parent id: ", this.state.parentID);
+        console.log("subitems field: "+ itemToSave);
+        console.log(itemToSave);
+        console.log(dataItem);
+        console.log("Adding new Category");
+        const proxyurl = "https://cors-anywhere.herokuapp.com/";
+        try {
+            fetch('/addCategory',{
+                method: 'POST',
+                body: JSON.stringify({
+                    name: dataItem.name,
+                    parentID: this.state.parentID
+                }),
+                headers: {
+                    "Content-Type": "application/json"}
+              })
+              .then(res => res.json())}
+              catch (err) {
+                console.log(err);
+              }
     }
 
     // Method for saving an edit since before it used the same save as add, This allows us to differentiate the two.
@@ -146,7 +179,36 @@ class FileStructure extends React.Component {
             data: mapTree(this.state.data, subItemsField, item => item.id === itemToSave.id ? itemToSave : item),
             inEdit: this.state.inEdit.filter(i => i.id !== itemToSave.id)
         });
-        this.editCategory(itemToSave);
+        //this.editCategory(itemToSave);
+
+        console.log("subitems field: "+ itemToSave);
+        console.log(itemToSave);
+        console.log(dataItem);
+        console.log(dataItem.id);
+        console.log("Editing!!");
+        const proxyurl = "https://cors-anywhere.herokuapp.com/";
+
+        //appended (Video) to the videos
+        if(dataItem.name.includes("(Video)")){
+            this.state.isCat = false;
+        }
+
+        try {
+            fetch('/editCategory',{
+                method: 'POST',
+                body: JSON.stringify({
+                    name: dataItem.name,
+                    id: dataItem.id,
+                    isCat: this.state.isCat
+
+                }),
+                headers: {
+                    "Content-Type": "application/json"}
+              })
+              .then(res => res.json())}
+              catch (err) {
+                console.log(err);
+              }
     }
 
     cancel = (editedItem) => {
@@ -163,15 +225,41 @@ class FileStructure extends React.Component {
     }
 
     remove = (dataItem) => {
+        const isCat = true;
         this.setState({
             data: removeItems(this.state.data, subItemsField, i => i.id === dataItem.id),
             inEdit: this.state.inEdit.filter(i => i.id !== dataItem.id)
         });
-        this.removeCategory(dataItem);
+        //this.removeCategory(dataItem);
+
+        console.log("this is what im removing: ");
+        console.log(dataItem);
+        console.log("Removing!!");
+        const proxyurl = "https://cors-anywhere.herokuapp.com/";
+
+        //appended "(Video)"" to the videos
+        if(dataItem.name.includes("(Video)")){
+            this.state.isCat = false;
+        }
+
+        try {
+            fetch('/removeCategory',{
+                method: 'POST',
+                body: JSON.stringify({
+                    id: dataItem.id,
+                    isCat: this.state.isCat
+                }),
+                headers: {
+                    "Content-Type": "application/json"}
+              })
+              .then(res => res.json())}
+              catch (err) {
+                console.log(err);
+              }
     }
 
     // Separate component for buttons
-    CommandCell = MyCommandCell(this.enterEdit, this.remove, this.save, this.editSave, this.cancel, this.addChild, editField);
+    CommandCell = MyCommandCell(this.enterEdit, this.remove, this.save, this.editSave, this.cancel, this.addChild, editField, this.addVideoContent);
 
     onExpandChange = (e) => {
         this.setState({
