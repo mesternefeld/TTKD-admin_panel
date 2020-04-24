@@ -20,8 +20,9 @@ class Content extends React.Component {
             currentCategorie: null,
             currentVideo: null,
             currentAudio: null,
-            currentSteps: null,
+            transcript: "",
             renderAudio: false,
+            currentSteps: null
         }
 
         // Allows these functions access to this (so they can access this.state)
@@ -124,7 +125,8 @@ class Content extends React.Component {
       })
 
       console.log("transcribing: " + newTranscript);
-
+      this.setState({transcript: newTranscript});
+      
       return this.state.currentSteps;
     }
     
@@ -135,6 +137,7 @@ class Content extends React.Component {
     returnContent = () => {
       
       this.createTranscript();
+      console.log(this.state.currentSteps);
       console.log(this.state);
     }
     
@@ -201,7 +204,7 @@ class Video extends React.Component {
 class Steps extends React.Component {
 
   state = {
-    values: [{ value: null, transcript: null}]
+    values: [{ value: null, time: null}]
   }
 
     handleValueChange(i, event) {
