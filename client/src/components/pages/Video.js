@@ -54,7 +54,7 @@ class Video extends React.Component {
             </div>
         );
     }
-   
+
     renderedAudio(renderAudio){
       if(this.state.renderAudio === true){
         this.audio = <Audio
@@ -67,6 +67,7 @@ class Video extends React.Component {
         return this.audio;
       }
     }
+
     
 }
 

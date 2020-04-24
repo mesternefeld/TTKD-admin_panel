@@ -9,14 +9,20 @@ import {Button} from "@progress/kendo-react-buttons";
 
 class Steps extends React.Component {
     constructor(props){
-		super(props);
-
-		this.state = {
-            transcript: "",
-            values: [{ value: null,
-                        time: null }]
+        super(props)
+        
+        this.state = {
+            values: [{
+                value: null,
+                time: null 
+            }]
         }
     }
+// const Steps = (props) => {
+//         const {
+//             transctipt,
+//             values
+//         } = props;
     
     handleValueChange(i, event) {
         let values = [...this.state.values];
